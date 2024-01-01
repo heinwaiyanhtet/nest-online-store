@@ -5,27 +5,28 @@ import { title } from 'process';
 @Controller()
 export class AppController {
 
-  @Get()
-  root(@Res() res: Response) {
-    return res.render('index', { message: 'Hello world!!' });
+  @Get("/")
+  @Render('index')
+  index(){
+    return {
+        title : "Home Page - Online Store"
+    }
   }
+
 
   @Get("/about")
   @Render("about")
   about(){
-
       let viewData = [];
+
+      viewData['title'] = "About us - Online Store";
+      viewData["subtitle"] = "About us";
       viewData["description"] = "This is about page ...";
       viewData["author"] = "Developed By Hein Wai Yan Htet";
-      let data1 = "About us - Online Store";
 
       return{
-        title : data1,
-        subtitle : "About us",
         viewData : viewData
       };
-
-
   }
 
 
