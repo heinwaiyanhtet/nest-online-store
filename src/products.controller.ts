@@ -22,20 +22,18 @@ export class ProductsController
 
 
     @Get('/:id')
-    async show(@Param() params, @Res() response)
-    {
+    async show(@Param() params, @Res() response) {
+
         const product = await this.productService.findOne(params.id);
-        if(product === undefined)
-        {
-            return response.redirect('/products');
+
+        if (product === undefined) {
+        return response.redirect('/products');
         }
         const viewData = [];
-        viewData['title'] = product.name.toUpperCase() + '-Online Store';
-        viewData['subtitle'] = product.name.toUpperCase() + '-Product Information';
+        viewData['title'] = product.getName() + ' - Online Store';
+        viewData['subtitle'] = product.getName() + ' - Product Information';
         viewData['product'] = product;
-
-        return response.render('products/show',{viewData:viewData});
+        return response.render('products/show', { viewData: viewData });
     }
-
 
 }

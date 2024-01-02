@@ -1,7 +1,10 @@
 import { InjectRepository } from "@nestjs/typeorm";
 import { Product } from "./product.entity";
 import { Repository } from "typeorm";
+import { Injectable } from "@nestjs/common";
 
+
+@Injectable()
 export class ProductsService {
     constructor
     (
@@ -13,8 +16,9 @@ export class ProductsService {
         return this.productsRepository.find();
     }
 
-    findOne(id:any) : Promise<Product>
-    {
-        return this.productsRepository.findOne(id);
+    findOne(id: number): Promise<Product | null> {
+        return this.productsRepository.findOneBy({ id });
     }
+    
+    
 }
