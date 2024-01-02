@@ -3,7 +3,9 @@ import { ProductsService } from './models/product.service';
 import { response } from 'express';
 
 @Controller('/products')
-export class ProductsController{
+export class ProductsController
+{
+
     constructor(private readonly productService : ProductsService) {}
 
     @Get('/')
@@ -28,8 +30,8 @@ export class ProductsController{
             return response.redirect('/products');
         }
         const viewData = [];
-        viewData['title'] = product.name + '-Online Store';
-        viewData['subtitle'] = product.name + '-Product Information';
+        viewData['title'] = product.name.toUpperCase() + '-Online Store';
+        viewData['subtitle'] = product.name.toUpperCase() + '-Product Information';
         viewData['product'] = product;
 
         return response.render('products/show',{viewData:viewData});
