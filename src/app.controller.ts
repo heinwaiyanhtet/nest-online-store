@@ -13,13 +13,12 @@ export class AppController {
         title : "Home Page - Online Store"
     }
   }
-
+  
 
   @Get("/about")
   @Render("about")
   about(){
       let viewData = [];
-
       viewData['title'] = "About us - Online Store";
       viewData["subtitle"] = "About us";
       viewData["description"] = "This is about page ...";

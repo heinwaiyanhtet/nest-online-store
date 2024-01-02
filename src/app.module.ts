@@ -4,6 +4,7 @@ import path from 'path';
 import { ProductsController } from './products.controller';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Product } from './models/product.entity';
+import { ProductsService } from './models/product.service';
 
 @Module({
   imports: 
@@ -21,5 +22,6 @@ import { Product } from './models/product.entity';
     TypeOrmModule.forFeature([Product])
   ],
   controllers: [AppController,ProductsController],
+  providers:[ProductsService]
 })
 export class AppModule {}
