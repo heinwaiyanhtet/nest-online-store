@@ -6,6 +6,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Product } from './models/product.entity';
 import { ProductsService } from './models/product.service';
 import { DataSource } from 'typeorm';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: 
@@ -20,7 +21,8 @@ import { DataSource } from 'typeorm';
       "entities": ["dist/**/*.entity{.ts,.js}"],
       "synchronize": true
     }),
-    TypeOrmModule.forFeature([Product])
+    TypeOrmModule.forFeature([Product]),
+    AdminModule
   ],
   controllers: [AppController,ProductsController],
   providers:[ProductsService]
