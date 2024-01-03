@@ -9,7 +9,7 @@ export class AdminController{
     {
 
     }
-    
+
     @Get('/')
     @Render('admin/index')
     async index(){
