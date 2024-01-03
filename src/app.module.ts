@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import path from 'path';
 import { ProductsController } from './products.controller';
@@ -8,6 +8,7 @@ import { ProductsService } from './models/product.service';
 import { DataSource } from 'typeorm';
 import { AdminModule } from './admin/admin.module';
 
+@Global()
 @Module({
   imports: 
   [
@@ -25,8 +26,9 @@ import { AdminModule } from './admin/admin.module';
     AdminModule
   ],
   controllers: [AppController,ProductsController],
-  providers:[ProductsService]
+  providers:[ProductsService],
+  exports:[ProductsService]
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  // constructor(private dataSource: DataSource) {}
 }
