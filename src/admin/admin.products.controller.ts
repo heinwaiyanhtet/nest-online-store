@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Redirect, Render, UploadedFile, UploadedFiles, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Redirect, Render, UploadedFile, UploadedFiles, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { Product } from "src/models/product.entity";
 import { ProductsService } from "src/models/product.service";
@@ -34,6 +34,12 @@ export class AdminProductsController{
         newProduct.setPrice(body.price);
         newProduct.setImage(file.filename);
         await this.productService.createOrUpdate(newProduct);
+    }
+
+    @Post('/:id')
+    @Redirect('/admin/products')
+    remove(@Param('id') id: string) {
+    return this.productService.remove(id);
     }
     
 
