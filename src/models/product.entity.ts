@@ -3,6 +3,7 @@ import { Entity,Column,PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Product
 {
+   
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -40,6 +41,10 @@ export class Product
     getDescription() : string
     {
         return this.description;
+    }
+    
+    setDescription(description : string){
+        this.description = description
     }
 
     getImage() : string
