@@ -22,6 +22,40 @@ export class AdminProductsController{
         }
     }
 
+    @Get('/:id')
+    // @Render('/admin/products/edit')
+    async edit(@Param('id') id: number) {
+
+        return "hello";
+        // const viewData = [];
+        // viewData['title'] = 'Admin Page - Edit Product - Online Store';
+        // viewData['product'] = await this.productService.findOne(id);
+        // return {
+        //     viewData: viewData,
+        // };
+    }
+    
+    @Post("/:id/update")
+    @UseInterceptors(FileInterceptor('image',{ dest: './public/uploads'}))
+    @Redirect('/admin/products')
+    async update(
+        @Body() body,
+        @UploadedFile() file : Express.Multer.File,
+        @Param('id') id:number
+    )
+    {
+        const product = await this.productService.findOne(id);
+
+        product.setName(body.name);
+        product.setDescription(body.description);
+        product.setPrice(body.price);
+        if (file) {
+         product.setImage(file.filename);
+        }
+
+        await this.productService.createOrUpdate(product);
+    }   
+
 
 
     @Post('/store')
@@ -39,7 +73,7 @@ export class AdminProductsController{
     @Post('/:id')
     @Redirect('/admin/products')
     remove(@Param('id') id: string) {
-    return this.productService.remove(id);
+        return this.productService.remove(id);
     }
     
 
