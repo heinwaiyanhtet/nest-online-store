@@ -41,6 +41,15 @@ export class User{
         this.name = this.name;
     }
 
+    getEmail() : string{
+        return this.email;
+    }
+
+    setEmail(email : string)
+    {
+        this.email = email;
+    }
+
     getPassword() : string{
         return this.password;
     }

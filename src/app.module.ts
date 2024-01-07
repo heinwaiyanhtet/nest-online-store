@@ -7,6 +7,9 @@ import { Product } from './models/product.entity';
 import { ProductsService } from './models/product.service';
 import { DataSource } from 'typeorm';
 import { AdminModule } from './admin/admin.module';
+import { UsersService } from './models/users.service';
+import { AuthModule } from './auth/auth.module';
+import { User } from './models/user.entity';
 
 @Global()
 @Module({
@@ -22,12 +25,13 @@ import { AdminModule } from './admin/admin.module';
       "entities": ["dist/**/*.entity{.ts,.js}"],
       "synchronize": true
     }),
-    TypeOrmModule.forFeature([Product]),
-    AdminModule
+    TypeOrmModule.forFeature([Product,User]),
+    AdminModule,
+    AuthModule
   ],
   controllers: [AppController,ProductsController],
-  providers:[ProductsService],
-  exports:[ProductsService]
+  providers:[ProductsService,UsersService],
+  exports:[ProductsService,UsersService]
 })
 export class AppModule {
   // constructor(private dataSource: DataSource) {}
