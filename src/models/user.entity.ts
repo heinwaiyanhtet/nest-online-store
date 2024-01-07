@@ -38,7 +38,7 @@ export class User{
 
     setName(name : string) 
     {
-        this.name = this.name;
+        this.name = name;
     }
 
     getEmail() : string{

@@ -25,8 +25,8 @@ export class AuthController{
         newUser.setName(body.name);
         newUser.setPassword(body.password);
         newUser.setEmail(body.email);
-        newUser.setRole(body.role);
-        newUser.setBalance(body.balance);
+        newUser.setRole('client');
+        newUser.setBalance(1000);
         await this.userService.createOrUpdate(newUser);
     }
 
