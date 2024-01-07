@@ -23,16 +23,14 @@ export class AdminProductsController{
     }
 
     @Get('/:id')
-    // @Render('/admin/products/edit')
+    @Render('admin/products/edit')
     async edit(@Param('id') id: number) {
-
-        return "hello";
-        // const viewData = [];
-        // viewData['title'] = 'Admin Page - Edit Product - Online Store';
-        // viewData['product'] = await this.productService.findOne(id);
-        // return {
-        //     viewData: viewData,
-        // };
+        const viewData = [];
+        viewData['title'] = 'Admin Page - Edit Product - Online Store';
+        viewData['product'] = await this.productService.findOne(id);
+        return {
+            viewData: viewData,
+        };
     }
     
     @Post("/:id/update")
