@@ -15,19 +15,20 @@ import { User } from './models/user.entity';
 @Module({
   imports: 
   [
-    TypeOrmModule.forRoot({
-      "type": "mysql",
-      "host": "localhost",
-      "port": 3306,
-      "username": "test",
-      "password": "password",
-      "database": "test",
-      "entities": ["dist/**/*.entity{.ts,.js}"],
-      "synchronize": true
-    }),
-    TypeOrmModule.forFeature([Product,User]),
-    AdminModule,
-    AuthModule
+      TypeOrmModule.forRoot({
+        "type": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "username": "test",
+        "password": "password",
+        "database": "test",
+        "entities": ["dist/**/*.entity{.ts,.js}"],
+        "synchronize": true
+      }),
+
+      TypeOrmModule.forFeature([Product,User]),
+      AdminModule,
+      AuthModule
   ],
   controllers: [AppController,ProductsController],
   providers:[ProductsService,UsersService],
